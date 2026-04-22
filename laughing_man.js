@@ -1,4 +1,4 @@
-const SQUARE_COUNT=3;
+const SQUARE_COUNT=60;
 const TIMER_SPEED=16.6;
 const SPEED = 5;
 
@@ -20,12 +20,24 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     Array.from(box.children).forEach((element)=>{
-        let dx = SPEED * Math.random()*2-1; //This gives a number from -1 to .99999
-        let dy = SPEED * Math.random()*2-1;
+        const parent = element.parentElement;
+        const maxX = parent.clientWidth - element.clientWidth;
+        const maxY = parent.clientHeight - element.clientHeight;
 
-        let x = parseInt(element.style.left) || 0;
-        let y = parseInt(element.style.top) || 0;
+        let dx = SPEED * (Math.random()*2-1); //This gives a number from -1 to .99999
+        let dy = SPEED * (Math.random()*2-1);
+
+        let x = parseInt(element.style.left) || 225;
+        let y = parseInt(element.style.top) || 175;
         setInterval(()=>{
+
+            if (x <= 0 || x >= maxX){
+                dx *=-1;
+            }
+            if (y<= 0 || y >= maxY){
+                dy *= -1;
+            }
+
             x+=dx;
             y+=dy;
             
