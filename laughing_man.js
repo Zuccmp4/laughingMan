@@ -33,9 +33,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
             if (x <= 0 || x >= maxX){
                 dx *=-1;
+
+                    let color = getColor();
+                    element.style.borderColor = color;
+                    element.style.backgroundColor = color;
+
             }
             if (y<= 0 || y >= maxY){
                 dy *= -1;
+
+                let color = getColor();
+                element.style.borderColor = color;
+                element.style.backgroundColor = color;
             }
 
             x+=dx;
@@ -58,4 +67,8 @@ function newColor(){
 
     return `rgb(${r},${g},${b})`;
 
+}
+
+function getColor(){
+    return newColor();
 }
